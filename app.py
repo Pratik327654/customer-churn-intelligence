@@ -162,6 +162,6 @@ if online_security == "No":
 if not actions:
         actions.append("Offer a routine satisfaction check-in")
 
-    st.subheader("Recommended Retention Actions")
-    for action in actions:
+st.subheader("Recommended Retention Actions")
+for action in actions:
         st.write(f"- {action}")
