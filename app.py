@@ -141,26 +141,25 @@ col4.metric(
 
 st.caption(f'Report generated at (UTC): {report["generated_at_utc"]}')
 
+st.subheader("Prediction Results")
+st.metric("Churn Probability", f"{probability:.2%}")
 
-    st.subheader("Prediction Results")
-    st.metric("Churn Probability", f"{probability:.2%}")
-
-    if probability >= threshold:
+if probability >= threshold:
         st.error("High Risk")
-    else:
+else:
         st.success("Low Risk")
 
-    actions = []
+actions = []
 
-    if contract == "Month-to-month":
+if contract == "Month-to-month":
         actions.append("Offer a suitable long-term contract incentive")
-    if tenure <= 12:
+if tenure <= 12:
         actions.append("Provide early-customer onboarding support")
-    if tech_support == "No":
+if tech_support == "No":
         actions.append("Offer a technical support review")
-    if online_security == "No":
+if online_security == "No":
         actions.append("Explain available online security options")
-    if not actions:
+if not actions:
         actions.append("Offer a routine satisfaction check-in")
 
     st.subheader("Recommended Retention Actions")
