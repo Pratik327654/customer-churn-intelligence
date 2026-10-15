@@ -2,6 +2,7 @@
 from datetime import datetime, timezone
 
 import pandas as pd
+import os
 
 
 def generate_prediction_report(probabilities, threshold=0.40):
@@ -31,3 +32,34 @@ def generate_prediction_report(probabilities, threshold=0.40):
         "average_churn_probability": round(float(probabilities.mean()), 4),
         "threshold": float(threshold),
     }
+    
+HISTORY_FILE = "prediction_history.csv"
+
+
+def save_prediction(probability, threshold=0.40):
+    """Append one prediction to the local CSV history."""
+
+    report = generate_prediction_report(
+        [probability],
+        threshold=threshold
+    )
+
+    row = pd.DataFrame([{
+        "timestamp_utc": report["generated_at_utc"],
+        "churn_probability": float(probability),
+        "risk_level": (
+            "High Risk" if probability >= threshold else "Low Risk"
+        ),
+        "threshold": float(threshold),
+    }])
+
+    file_exists = os.path.exists(HISTORY_FILE)
+
+    row.to_csv(
+        HISTORY_FILE,
+        mode="a",
+        header=not file_exists,
+        index=False
+    )
+
+    return row
