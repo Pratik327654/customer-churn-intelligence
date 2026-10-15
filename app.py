@@ -170,3 +170,27 @@ if not actions:
 st.subheader("Recommended Retention Actions")
 for action in actions:
         st.write(f"- {action}")
+
+st.divider()
+st.subheader("Prediction History")
+
+history = load_prediction_history()
+
+if history.empty:
+    st.info("No prediction history available yet.")
+else:
+    total = len(history)
+    high_risk = int((history["risk_level"] == "High Risk").sum())
+    low_risk = int((history["risk_level"] == "Low Risk").sum())
+    avg_probability = history["churn_probability"].mean()
+
+    col1, col2 = st.columns(2)
+    col1.metric("Total Predictions", total)
+    col2.metric("Average Churn Probability", f"{avg_probability:.2%}")
+
+    col3, col4 = st.columns(2)
+    col3.metric("High Risk Predictions", high_risk)
+    col4.metric("Low Risk Predictions", low_risk)
+
+    st.dataframe(history, use_container_width=True)
+
