@@ -112,6 +112,35 @@ if submitted:
     processed_customer = preprocessor.transform(customer)
     probability = model.predict_proba(processed_customer)[0, 1]
     report = generate_prediction_report([probability], threshold=threshold)
+    
+st.subheader("Prediction Monitoring")
+
+col1, col2 = st.columns(2)
+
+col1.metric(
+    "Total Customers Monitored",
+    report["total_customers"]
+)
+
+col2.metric(
+    "High Risk Customers",
+    report["high_risk_customers"]
+)
+
+col3, col4 = st.columns(2)
+
+col3.metric(
+    "Low Risk Customers",
+    report["low_risk_customers"]
+)
+
+col4.metric(
+    "Average Churn Probability",
+    f'{report["average_churn_probability"]:.2%}'
+)
+
+st.caption(f'Report generated at (UTC): {report["generated_at_utc"]}')
+
 
     st.subheader("Prediction Results")
     st.metric("Churn Probability", f"{probability:.2%}")
