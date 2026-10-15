@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from monitoring import generate_prediction_report
 
 artifacts = joblib.load("customer_churn_model.pkl")
 
