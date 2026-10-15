@@ -71,11 +71,20 @@ customer-churn-intelligence/
 ## Important Note
 Retention recommendations are based on predefined business rules. They are suggestions, not guaranteed interventions or evidence that a customer will churn.
 
+## Project Status
+
+- ✅ Machine Learning model development
+- ✅ Docker containerization
+- ✅ Automated model testing with pytest
+- ✅ CI/CD using GitHub Actions
+- ✅ Cloud deployment using Streamlit Community Cloud
+- ⏳ Model monitoring and performance tracking
+
 ## Future Improvements
-- Automated model evaluation and testing
-- CI/CD with GitHub Actions
-- Cloud deployment
-- Model monitoring and performance tracking
+
+- Implement model monitoring and data drift detection
+- Track prediction patterns and model performance over time
+- Explore automated model retraining when needed
 
 ## Author
 Pratik Nichal
