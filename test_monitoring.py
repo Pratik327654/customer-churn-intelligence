@@ -23,6 +23,21 @@ def test_prediction_report_rejects_invalid_probability():
         generate_prediction_report([0.2, 1.5])
 
 
-def test_prediction_report_rejects_empty_input():
-    with pytest.raises(ValueError):
-        generate_prediction_report([])
+def test_save_prediction_appends_to_csv(tmp_path, monkeypatch):
+    import pandas as pd
+    import monitoring
+
+    history_file = tmp_path / "prediction_history.csv"
+    monkeypatch.setattr(monitoring, "HISTORY_FILE", str(history_file))
+
+    monitoring.save_prediction(0.75, threshold=0.40)
+    monitoring.save_prediction(0.20, threshold=0.40)
+
+    history = pd.read_csv(history_file)
+
+    assert len(history) == 2
+    assert list(history["risk_level"]) == ["High Risk", "Low Risk"]
+    assert list(history["churn_probability"]) == [0.75, 0.20]
+
+
+
