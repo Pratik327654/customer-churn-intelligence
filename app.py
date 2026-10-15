@@ -111,6 +111,7 @@ if submitted:
 
     processed_customer = preprocessor.transform(customer)
     probability = model.predict_proba(processed_customer)[0, 1]
+    save_prediction(probability, threshold=threshold)
     report = generate_prediction_report([probability], threshold=threshold)
     
 st.subheader("Prediction Monitoring")
