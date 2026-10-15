@@ -111,6 +111,7 @@ if submitted:
 
     processed_customer = preprocessor.transform(customer)
     probability = model.predict_proba(processed_customer)[0, 1]
+    report = generate_prediction_report([probability], threshold=threshold)
 
     st.subheader("Prediction Results")
     st.metric("Churn Probability", f"{probability:.2%}")
