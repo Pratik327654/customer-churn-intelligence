@@ -1,4 +1,7 @@
 # Customer Churn Prediction & Retention Intelligence System
+🚀 **Live Demo:** [Try the Customer Churn Prediction App](https://pratik-churn-ai-2026.streamlit.app)
+
+Predict customer churn risk and explore retention recommendations using a deployed Machine Learning application.
 
 ## Project Overview
 This project predicts customer churn using Machine Learning and provides rule-based retention recommendations to help businesses identify customers who may be at risk of leaving.
