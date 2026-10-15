@@ -63,3 +63,20 @@ def save_prediction(probability, threshold=0.40):
     )
 
     return row
+
+
+def load_prediction_history():
+    """Load saved prediction history if available."""
+
+    if not os.path.exists(HISTORY_FILE):
+        return pd.DataFrame(
+            columns=[
+                "timestamp_utc",
+                "churn_probability",
+                "risk_level",
+                "threshold",
+            ]
+        )
+
+    return pd.read_csv(HISTORY_FILE)
+
