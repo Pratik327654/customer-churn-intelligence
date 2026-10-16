@@ -132,6 +132,17 @@ drift_report = detect_numeric_drift(
 )
     save_prediction(probability, threshold=threshold)
     report = generate_prediction_report([probability], threshold=threshold)
+
+st.subheader("Numeric Feature Drift Report")
+
+st.dataframe(drift_report, use_container_width=True)
+
+drift_count = int(drift_report["drift_detected"].sum())
+
+if drift_count > 0:
+    st.warning(f"Deviation detected in {drift_count} numeric feature(s).")
+else:
+    st.success("No significant deviation detected in numeric features.")
     
 st.subheader("Prediction Monitoring")
 
