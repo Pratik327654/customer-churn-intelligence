@@ -78,11 +78,13 @@ Retention recommendations are based on predefined business rules. They are sugge
 - ✅ Automated model testing with pytest
 - ✅ CI/CD using GitHub Actions
 - ✅ Cloud deployment using Streamlit Community Cloud
-- ⏳ Model monitoring and performance tracking
+- ✅ Prediction monitoring and history tracking
+- ✅ Numeric feature deviation report
+- ⏳ Population-level data drift monitoring
 
 ## Future Improvements
 
-- Implement model monitoring and data drift detection
+- Implement robust population-level data drift detection
 - Track prediction patterns and model performance over time
 - Explore automated model retraining when needed
 
