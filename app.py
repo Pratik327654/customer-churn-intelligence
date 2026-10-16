@@ -130,6 +130,7 @@ drift_report = detect_numeric_drift(
     ["tenure", "MonthlyCharges", "TotalCharges"],
     threshold=0.20
 )
+
     save_prediction(probability, threshold=threshold)
     report = generate_prediction_report([probability], threshold=threshold)
 
