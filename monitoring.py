@@ -80,3 +80,30 @@ def load_prediction_history():
 
     return pd.read_csv(HISTORY_FILE)
 
+
+def detect_numeric_drift(reference_stats, new_data, columns, threshold=0.20):
+    """Detect numeric mean shifts relative to reference standard deviation."""
+
+    results = []
+
+    for col in columns:
+        reference_mean = float(reference_stats.loc["mean", col])
+        reference_std = float(reference_stats.loc["std", col])
+        new_mean = float(new_data[col].mean())
+
+        if pd.isna(reference_std) or reference_std == 0:
+            drift_score = 0.0
+        else:
+            drift_score = abs(new_mean - reference_mean) / reference_std
+
+        results.append({
+            "feature": col,
+            "reference_mean": round(reference_mean, 2),
+            "new_mean": round(new_mean, 2),
+            "drift_score": round(float(drift_score), 3),
+            "drift_detected": drift_score > threshold,
+        })
+
+    return pd.DataFrame(results)
+
+
