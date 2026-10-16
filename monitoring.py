@@ -107,3 +107,14 @@ def detect_numeric_drift(reference_stats, new_data, columns, threshold=0.20):
     return pd.DataFrame(results)
 
 
+REFERENCE_STATS = pd.DataFrame(
+    {
+        "tenure": [32.37, 24.56],
+        "MonthlyCharges": [64.76, 30.09],
+        "TotalCharges": [2283.30, 2266.77],
+    },
+    index=["mean", "std"],
+)
+
+
+
