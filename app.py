@@ -131,7 +131,7 @@ drift_report = detect_numeric_drift(
     threshold=0.20
 )
 
-    save_prediction(probability, threshold=threshold)
+save_prediction(probability, threshold=threshold)
     report = generate_prediction_report([probability], threshold=threshold)
 
 st.subheader("Numeric Feature Drift Report")
