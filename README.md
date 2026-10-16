@@ -67,6 +67,16 @@ customer-churn-intelligence/
 ├── requirements.txt
 └── README.md
 ```
+## Model Monitoring
+
+The application includes basic prediction monitoring capabilities:
+
+- **Prediction History:** Logs individual churn predictions with timestamps, churn probabilities, risk levels, and thresholds.
+- **Prediction Summary:** Displays the number of monitored predictions, high-risk and low-risk counts, and average churn probability.
+- **Numeric Feature Deviation Report:** Compares a customer's `tenure`, `MonthlyCharges`, and `TotalCharges` values against reference statistics.
+- **Threshold-Based Alerts:** Flags numeric feature deviations when the normalized deviation score exceeds the configured threshold.
+
+**Current limitation:** The numeric deviation report evaluates individual customer inputs against reference statistics. It does not yet provide population-level data drift detection or monitor actual model performance over time. Prediction history is stored in a local CSV file, so persistence on Streamlit Community Cloud is not guaranteed across restarts or redeployments.
 
 ## Important Note
 Retention recommendations are based on predefined business rules. They are suggestions, not guaranteed interventions or evidence that a customer will churn.
