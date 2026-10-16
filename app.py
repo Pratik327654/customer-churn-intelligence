@@ -117,6 +117,19 @@ if submitted:
 
     processed_customer = preprocessor.transform(customer)
     probability = model.predict_proba(processed_customer)[0, 1]
+    # Check numeric feature deviation from reference values
+numeric_input = pd.DataFrame({
+    "tenure": [tenure],
+    "MonthlyCharges": [monthly_charges],
+    "TotalCharges": [total_charges]
+})
+
+drift_report = detect_numeric_drift(
+    REFERENCE_STATS,
+    numeric_input,
+    ["tenure", "MonthlyCharges", "TotalCharges"],
+    threshold=0.20
+)
     save_prediction(probability, threshold=threshold)
     report = generate_prediction_report([probability], threshold=threshold)
     
