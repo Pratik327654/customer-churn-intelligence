@@ -5,6 +5,8 @@ from monitoring import (
     generate_prediction_report,
     save_prediction,
     load_prediction_history,
+    detect_numeric_drift,
+    REFERENCE_STATS,
 )
 
 artifacts = joblib.load("customer_churn_model.pkl")
